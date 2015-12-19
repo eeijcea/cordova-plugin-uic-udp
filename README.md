@@ -24,17 +24,18 @@ varMSEARCH += "ST: upnp:rootservice\r\n";
 varMSEARCH += "USER-AGENT: Android/4.0 UDAP/2.0\r\n";
 varMSEARCH += "\r\n";
 
-// 1)  Initialize UDP Stack after Cordova is ready
-
+</pre>
+<b>1)  Initialize UDP Stack after Cordova is ready </b>
+<pre>
 function onDeviceReady() { 	
  	console.log("Device is ready");		                    
     	connectionStatus = navigator.onLine ? 'online' : 'offline';
     	udptransmit.initialize("239.255.255.250", 1900);
     	return;
  }
-
-// 2)  Submit SSDP Request upon successful UDP Stack initialization
-
+</pre>
+<b>2)  Submit SSDP Request upon successful UDP Stack initialization</b>
+<pre>
  function UDPTransmitterInitializationSuccess(success) {
 		console.log("Sending SSDP Broadcast:\n"+ varMSEARCH);	
 		udptransmit.getMessage(varMSEARCH);	
@@ -45,10 +46,10 @@ function onDeviceReady() {
 function UDPTransmitterInitializationError(error) {
    console.log(error);
  }
+</pre>
 
-
- //3. Check the success and/or error callbacks to see that each message was transmitted:  
- 
+ <b>3) Check the success and/or error callbacks to see that each message was transmitted:</b>
+ <pre>
 function UDPReceptionSuccess(success) {
 	console.log("SSDP Broadcast Success:\n");
 	var allanswers = success;
