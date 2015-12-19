@@ -28,6 +28,7 @@ import java.io.IOException;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.MulticastSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
@@ -40,6 +41,12 @@ public class UDPTransmit extends CordovaPlugin {
 	DatagramPacket datagramPacket;
 	DatagramSocket datagramSocket;
 	boolean successInitializingTransmitter = false;
+	String answers ="";
+	byte[] b = new byte[1100];
+	DatagramPacket dgram ;
+	InetAddress group;
+	MulticastSocket msocket;
+	
 	
 	// Constructor
 	public UDPTransmit() {
@@ -48,6 +55,21 @@ public class UDPTransmit extends CordovaPlugin {
 	// Handles and dispatches "exec" calls from the JS interface (udptransmit.js)
 	@Override
 	public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
+		
+		dgram = new DatagramPacket(b, b.length);	
+		
+		try{
+			group = InetAddress.getByName("239.255.255.250");
+			msocket = new MulticastSocket(1900); 
+			msocket.joinGroup(group);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
 		if("initialize".equals(action)) {
 			final String host = args.getString(0);
 			final int port = args.getInt(1);
@@ -141,6 +163,44 @@ public class UDPTransmit extends CordovaPlugin {
 						callbackContext.success(address.getHostAddress());
 					else
 						callbackContext.error("Error resolving host name: " + url);												
+				}
+			});
+			return true;
+		} else if("getMessage".equals(action)) {
+			final String message = args.getString(0);
+			
+			cordova.getThreadPool().execute(new Runnable() {
+            	public void run() {
+            		this.getMessage(message, callbackContext);
+            	}
+ 				private void getMessage(String data, CallbackContext callbackContext) {
+	 				boolean messageGet = false;
+	 				// Only attempt to send a packet if the transmitter initialization was successful
+	 				if (successInitializingTransmitter) {			
+	 					byte[] msg= data.getBytes();
+ 						try {
+	 							DatagramPacket hi = new DatagramPacket(msg, msg.length,group, 1900);
+	 							msocket.send(hi);
+	 							msocket.setSoTimeout(15000);
+	 							for (int i = 0; i <= 5; i++) {
+	 								
+		  								msocket.receive(dgram); // blocks until a datagram is received
+		  								System.err.println("Received " + dgram.getLength() + " bytes from " + dgram.getAddress());
+		  								dgram.setLength(b.length); // must reset length field!
+		  								answers += answers + "|"+dgram.getAddress() + "::"+ new String(dgram.getData());
+		  								messageGet = true;
+									}
+		 							
+
+	 						} catch (IOException e) {
+	 							// TODO Auto-generated catch block
+	 							e.printStackTrace();
+							} 
+ 					}
+					if (messageGet)
+						callbackContext.success("Success receiving UDP packet: " + "|" + answers);
+					else
+						callbackContext.error("Error receiving UDP packet: ");												
 				}
 			});
 			return true;
