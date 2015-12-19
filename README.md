@@ -8,7 +8,7 @@ Sent UDP request (SSDP Discovery) and wait for Answers.
 
 Only for Android/Java clients!!!
 
-EXAMPLE OF USE (js script at PhoneGap App): 
+<b>EXAMPLE OF USE (js script at PhoneGap App): </b>
 
 var Devices = [];
 var SSDPServer = "";
