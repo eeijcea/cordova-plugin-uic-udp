@@ -2,9 +2,11 @@ cordova-plugin-uic-udp
 ======================
 A Cordova plugin for UDP communications.
 Based in the original UDP plugin from applejacko (https://github.com/applejacko/cordova-plugin-uic-udp)
-but added new Method (getMessage) for:
+but added new Method (getMessage) for enabling:
 
 Sent UDP request (SSDP Discovery) and wait for Answers.
+
+Video link for some Field Tests conducted using this plugin and one ESP8266 device over regular Home WiFi:  https://youtu.be/E5sS6gw-2oU
 
 <b>Only for Android/Java clients!!!</b>
 
@@ -67,3 +69,4 @@ function UDPReceptionError(error) {
 	   console.log(error);
 }
 </pre>
+
