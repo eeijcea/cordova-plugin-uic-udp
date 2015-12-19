@@ -10,6 +10,7 @@ Only for Android/Java clients!!!
 
 <b>EXAMPLE OF USE (js script at PhoneGap App): </b>
 
+<pre>
 var Devices = [];
 var SSDPServer = "";
 var SSDPResponse = "";
@@ -71,3 +72,4 @@ function UDPReceptionError(error) {
 	   console.log(error);
 }
 
+</pre>
