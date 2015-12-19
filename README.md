@@ -6,7 +6,7 @@ but added new Method (getMessage) for enabling:
 
 Sent UDP request (SSDP Discovery) and wait for Answers.
 
-Video link for some Field Tests conducted using this plugin and one ESP8266 device over regular Home WiFi:  https://youtu.be/E5sS6gw-2oU
+Video Link for some Field Tests conducted using this plugin and one ESP8266 device over regular Home WiFi can be found <a href="https://youtu.be/E5sS6gw-2oU">Here</a>.
 
 <b>Only for Android/Java clients!!!</b>
 
