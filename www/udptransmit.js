@@ -33,6 +33,22 @@ cordova.exec(
 			[message]);
 return true;
 },
+
+
+getMessage: function(message) {
+cordova.exec(
+			// To access the success and error callbacks for packet transmission, these two functions should be in your project:
+			// UDPTransmissionSuccess(success)
+			// UDPTransmissionError(error)
+			function(success){UDPReceptionSuccess(success);},
+			function(error){UDPReceptionError(error);},
+			"UDPTransmit",
+			"getMessage",
+			[message]);
+return true;
+},
+
+
 			   
 resolveHostName: function(hostName) {
 cordova.exec(
