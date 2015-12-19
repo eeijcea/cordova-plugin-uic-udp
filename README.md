@@ -6,9 +6,9 @@ but added new Method (getMessage) for:
 
 Sent UDP request (SSDP Discovery) and wait for Answers.
 
-Only for Android/Java clients!!!
+<b>Only for Android/Java clients!!!</b>
 
-<b>EXAMPLE OF USE (js script at PhoneGap App): </b>
+<H2>EXAMPLE OF USE (js script at PhoneGap App): </H2>
 
 <pre>
 var SSDPServer = "";
