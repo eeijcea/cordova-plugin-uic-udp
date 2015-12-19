@@ -11,7 +11,6 @@ Only for Android/Java clients!!!
 <b>EXAMPLE OF USE (js script at PhoneGap App): </b>
 
 <pre>
-var Devices = [];
 var SSDPServer = "";
 var SSDPResponse = "";
 var SSDPContainer;
@@ -51,19 +50,19 @@ function UDPTransmitterInitializationError(error) {
  //3. Check the success and/or error callbacks to see that each message was transmitted:  
  
 function UDPReceptionSuccess(success) {
-		console.log("SSDP Broadcast Success:\n");
-	   	var allanswers = success;
-                //Split Responses (separator = |)
-	   	var Rservers = allanswers.split("|");
+	console.log("SSDP Broadcast Success:\n");
+	var allanswers = success;
+        //Split Responses (separator = |)
+	var Rservers = allanswers.split("|");
 
-		// Access to individual fields in the Response (Use :: Like separator)	   	
-	   	for (i = 0; i < Rservers.length; i++) {
-	   		SSDPContainer = Rservers[i].split("::");
-	   		SSDPServer = SSDPContainer[0];
-	   		SSDPResponse = SSDPContainer[1];
-	   	}	   
-	   	
-	   console.log(" Number of Rservers found:" + Rservers.length);   
+	// Access to individual fields in the Response (Use :: Like separator)	   	
+	for (i = 0; i < Rservers.length; i++) {
+	 	SSDPContainer = Rservers[i].split("::");
+	   	SSDPServer = SSDPContainer[0];
+	   	SSDPResponse = SSDPContainer[1];
+	 }	   
+	  	
+	 console.log(" Number of Rservers found:" + Rservers.length);   
 
  }
  
