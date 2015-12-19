@@ -54,8 +54,7 @@ function UDPReceptionSuccess(success) {
 	var allanswers = success;
         //Split Responses (separator = |)
 	var Rservers = allanswers.split("|");
-	
-	// Access to individual fields in the Response (Use :: Like separator)
+        // Access to individual fields in the Response (Use :: Like separator)
 	for (i = 0; i < Rservers.length; i++) {
 	 	SSDPContainer = Rservers[i].split("::");
 	   	SSDPServer = SSDPContainer[0];
