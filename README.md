@@ -1,4 +1,8 @@
 cordova-plugin-uic-udp
 ======================
+A Cordova plugin for UDP communications.
+Based in the original UDP plugin from applejacko (https://github.com/applejacko/cordova-plugin-uic-udp)
+but added new Method for:
 
-A Cordova plugin for UDP communications
+Sent UDP request (SSDP Discovery) and wait for Answers.
+
